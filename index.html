@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro RichText Editor</title>
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Prism.js for Code Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+</head>
+
+<body>
+
+<div class="editor-container">
+
+  <!-- =======================
+       🛠 TOOLBAR (ICON BASED)
+  ======================== -->
+  <div class="editor-toolbar">
+
+    <!-- Text Formatting Buttons -->
+    <button data-command="bold" title="Bold"><i class="fa-solid fa-bold"></i></button>
+    <button data-command="italic" title="Italic"><i class="fa-solid fa-italic"></i></button>
+    <button data-command="underline" title="Underline"><i class="fa-solid fa-underline"></i></button>
+    <button data-command="strikeThrough" title="Strikethrough"><i class="fa-solid fa-strikethrough"></i></button>
+
+    <!-- Undo & Redo -->
+    <button data-command="undo" title="Undo"><i class="fa-solid fa-rotate-left"></i></button>
+    <button data-command="redo" title="Redo"><i class="fa-solid fa-rotate-right"></i></button>
+
+    <!-- Text Color Picker -->
+    <div class="color-wrapper">
+      <button class="color-btn" id="textColorBtn" title="Text Color"><span class="bx">A</span><span class="arrow">▼</span></button>
+      <input type="color" id="fontColor" class="hidden-color">
+    </div>
+
+    <!-- Background Highlight Color -->
+    <div class="color-wrapper">
+      <button class="color-btn bg-btn" id="bgColorBtn" title="Highlight Color"><span class="bx highlight-icon">A</span><span class="arrow">▼</span></button>
+      <input type="color" id="bgColor" class="hidden-color">
+    </div>
+
+    <!-- Font Family Selection -->
+    <select id="fontFamily" title="Font Family">
+      <option>Arial</option><option>Verdana</option><option>Georgia</option>
+      <option>Tahoma</option><option>Times New Roman</option><option>Courier New</option>
+    </select>
+
+    <!-- Font Size Selection -->
+    <select id="fontSize" title="Font Size">
+      <option value="1">8px</option>
+      <option value="2">10px</option>
+      <option value="3" selected>12px</option>
+      <option value="4">14px</option>
+      <option value="5">18px</option>
+      <option value="6">24px</option>
+      <option value="7">32px</option>
+
+      <!-- Custom Extra Font Sizes -->
+      <option value="8">36px</option>
+      <option value="9">40px</option>
+      <option value="10">48px</option>
+      <option value="11">56px</option>
+      <option value="12">64px</option>
+      <option value="13">72px</option>
+    </select>
+
+    <!-- Text Alignment -->
+    <button data-command="justifyLeft" title="Align Left"><i class="fa-solid fa-align-left"></i></button>
+    <button data-command="justifyCenter" title="Align Center"><i class="fa-solid fa-align-center"></i></button>
+    <button data-command="justifyRight" title="Align Right"><i class="fa-solid fa-align-right"></i></button>
+    <button data-command="justifyFull" title="Justify"><i class="fa-solid fa-align-justify"></i></button>
+
+    <!-- List Buttons -->
+    <button data-command="insertUnorderedList" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
+    <button data-command="insertOrderedList" title="Number List"><i class="fa-solid fa-list-ol"></i></button>
+
+    <!-- Insert Link -->
+    <button id="insertLinkBtn" title="Insert Link"><i class="fa-solid fa-link"></i></button>
+
+    <!-- Insert Table -->
+    <button id="tableBtn" title="Insert Table"><i class="fa-solid fa-table"></i></button>
+
+    <!-- Table Selection Popup -->
+    <div id="tableGridPopup" class="table-grid-popup">
+      <div id="tableGrid" class="table-grid"></div>
+      <div id="tableSizeLabel">0 × 0</div>
+    </div>
+
+<!-- img  -->
+    <button id="insertImageBtn" title="Insert Image"><i class="fa-solid fa-image"></i></button>
+    <input type="file" id="imageUploader" accept="image/*" style="display:none">
+
+
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeBtn" title="Toggle Dark Mode"><i class="fa-solid fa-moon"></i></button>
+
+  </div>
+
+  <!-- Editable Rich Text Area -->
+  <div class="editor-area" id="editor" contenteditable="true"></div>
+
+</div>
+
+
+
+<!-- IMAGE INSERT MODAL -->
+<div id="imgModal" class="img-modal">
+  <div class="img-modal-content">
+    <h3>Rasm qo‘shish</h3>
+
+    <img id="previewImg" />
+
+    <label>Width (px):</label>
+    <input type="number" id="imgWidth" value="300">
+
+    <label>Height (px):</label>
+    <input type="number" id="imgHeight" placeholder="auto">
+
+    <div class="img-modal-actions">
+      <button id="insertImgConfirm">Saqlash</button>
+      <button id="closeImgModal">Bekor qilish</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Script -->
+<script src="main.js"></script>
+
+</body>
+</html>

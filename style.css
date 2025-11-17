@@ -1,0 +1,322 @@
+/* ===========================
+   🌍 GLOBAL PAGE STYLE
+=========================== */
+body {
+  background: #eef0f3;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* ===========================
+   📦 EDITOR CONTAINER
+=========================== */
+.editor-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===========================
+   🛠 TOOLBAR (STICKY TOP)
+=========================== */
+.editor-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  background: #f9fafb;
+  padding: 8px;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.editor-toolbar button,
+.upload-btn {
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  padding: 5px 7px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.editor-toolbar button:hover,
+.upload-btn:hover {
+  background: #dde3ea;
+}
+
+.editor-toolbar i {
+  font-size: 14px;
+}
+
+/* ===========================
+   ✏️ EDITOR TEXT AREA
+=========================== */
+.editor-area {
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 15px;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ===========================
+   🎨 COLOR PICKERS
+=========================== */
+.color-wrapper {
+  position: relative;
+}
+
+.color-btn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: white;
+  border: 1px solid #bfc3c8;
+  padding: 4px 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.color-btn:hover {
+  background: #e6edf6;
+  border-color: #8aa4c1;
+}
+
+.bx {
+  font-weight: bold;
+  font-size: 15px;
+  color: #000;
+}
+
+.bg-btn .highlight-icon {
+  background: yellow;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.arrow {
+  font-size: 12px;
+}
+
+/* Hidden input for color picker */
+.hidden-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ===========================
+   📁 FILE UPLOAD CUSTOM
+=========================== */
+.upload-btn input {
+  display: none;
+}
+
+/* ===========================
+   🔡 SELECT INPUTS
+=========================== */
+select {
+  border: 1px solid #cfd3d8;
+  padding: 5px;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ===========================
+   🌙 DARK MODE
+=========================== */
+.dark-mode {
+  background: #1d1f21 !important;
+  color: #fff !important;
+}
+
+.dark-mode .editor-toolbar {
+  background: #2a2d2f;
+}
+
+.dark-mode button {
+  background: #36393b;
+  border-color: #555;
+  color: white;
+}
+
+/* ===========================
+   📊 TABLE STYLES
+=========================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #666;
+  padding: 6px;
+  position: relative;
+}
+
+td.resizable,
+th.resizable {
+  position: relative;
+}
+
+/* Resize handlers */
+.col-resizer,
+.row-resizer {
+  position: absolute;
+  background: #3498db;
+  z-index: 5;
+}
+
+.col-resizer {
+  width: 4px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: col-resize;
+}
+
+.row-resizer {
+  height: 4px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: row-resize;
+}
+
+/* ===========================
+   ➕ TABLE GRID POPUP
+=========================== */
+#tableGridPopup {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  display: none;
+  padding: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  z-index: 200;
+}
+
+#tableGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 15px);
+  gap: 2px;
+}
+
+.cell {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #dcdcdc;
+  cursor: pointer;
+}
+
+.cell.active {
+  background: #4da3ff;
+}
+
+/* ===========================
+🖼 IMAGE INSERT FUNCTIONALITY 
+================================ */
+.img-wrap {
+  display: inline-flex;            /* 🔥 flex qilib imgni to‘liq boshqaramiz */
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+  border: 1px solid #d0d0d0;
+  padding: 0;
+  background: #fff;
+  resize: both;
+  overflow: hidden;                /* 🔥 rasm overflow qilib chiqmasin */
+  width: auto;                     /* kengayish tabiiy bo‘lsin */
+  height: auto;
+  max-width: 100%;
+}
+
+.img-wrap img {
+  width: 100%;                     /* 🔥 container bilan birga kengayadi */
+  height: 100%;                    /* 🔥 container bilan birga balandlashadi */
+  object-fit: contain;             /* 🔥 proportsiya buzilmaydi */
+  display: block;
+  pointer-events: none;            /* resize payti img tanlanmaydi */
+  user-select: none;
+}
+
+/* MODAL BACKDROP */
+.img-modal {
+  display: none;
+  position: fixed;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* MODAL BOX */
+.img-modal-content {
+  width: 350px;
+  background: #fff;
+  padding: 18px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.img-modal-content img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+}
+
+.img-modal-content label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.img-modal-content input {
+  width: 100%;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #bfbfbf;
+}
+
+.img-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.img-modal-actions button {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #2563eb;
+  color: white;
+}
+
+.img-modal-actions button:last-child {
+  background: #aaa;
+}
